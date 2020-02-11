@@ -1,8 +1,18 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from "react";
+import logo from "./logo.svg";
+import "./App.css";
+import { api } from "./api";
 
 const App = () => {
+  useEffect(() => {
+    getSummonerByName("상산조자룡이다");
+  }, []);
+
+  const getSummonerByName = async (summonerName: string) => {
+    const res = await api.getSummonerByName(summonerName);
+    console.log(res);
+  };
+
   return (
     <div className="App">
       <header className="App-header">
@@ -21,6 +31,6 @@ const App = () => {
       </header>
     </div>
   );
-}
+};
 
 export default App;

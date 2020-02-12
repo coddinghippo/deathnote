@@ -1,6 +1,18 @@
 import React, { useEffect } from "react";
+import styled from "styled-components";
 import { api } from "./api";
 import { GlobalStyle } from "./styles/global-styles";
+import SearchView from "./components/SearchView";
+
+const HeaderTitle = styled.div`
+  font-size: 4rem;
+`;
+
+const SearchContent = styled.div`
+  margin-top: 36vh;
+  display: flex;
+  justify-content: center;
+`;
 
 const App = () => {
   useEffect(() => {
@@ -15,7 +27,10 @@ const App = () => {
   return (
     <>
       <GlobalStyle />
-      <div className="App">Hello world</div>
+      <HeaderTitle>DEATH NOTE . GG</HeaderTitle>
+      <SearchContent>
+        <SearchView />
+      </SearchContent>
     </>
   );
 };

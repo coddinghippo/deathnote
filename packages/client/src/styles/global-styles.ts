@@ -11,6 +11,7 @@ ${reset};
 
   body{
     font-family: 'Nanum Gothic', sans-serif;
+    padding: 1rem;
   }
 
   a{

@@ -18,7 +18,6 @@ const InputBox = styled.input`
 const SearchButton = styled.div`
   margin: 1rem;
   padding: 1rem;
-  // border-radius: 1rem;
   font-size: 1rem;
   border: 1px solid white;
   text-align: center;

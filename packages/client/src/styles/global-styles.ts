@@ -1,5 +1,6 @@
 import reset from "styled-reset";
 import { createGlobalStyle } from "styled-components";
+import { colors } from "./_mixin";
 
 export const GlobalStyle = createGlobalStyle`
 ${reset};
@@ -9,7 +10,7 @@ ${reset};
 }
   * {
       box-sizing: border-box;
-      background: #000;
+      background: ${colors.paperBlack};
       color: white;
   }
 

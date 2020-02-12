@@ -3,6 +3,10 @@ import { createGlobalStyle } from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`
 ${reset};
+@font-face {
+  font-family:'Margarine';
+  src: url(${require("../fonts/Margarine-Regular.ttf")});
+}
   * {
       box-sizing: border-box;
       background: #000;
@@ -10,8 +14,8 @@ ${reset};
   }
 
   body{
-    font-family: 'Nanum Gothic', sans-serif;
     padding: 1rem;
+    font-family: 'Margarine', sans-serif;
   }
 
   a{

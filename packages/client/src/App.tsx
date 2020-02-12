@@ -5,11 +5,13 @@ import { GlobalStyle } from "./styles/global-styles";
 import SearchView from "./components/SearchView";
 
 const HeaderTitle = styled.div`
+  margin-top: 30vh;
   font-size: 4rem;
+  text-align: center;
 `;
 
 const SearchContent = styled.div`
-  margin-top: 36vh;
+  margin-top: 2rem;
   display: flex;
   justify-content: center;
 `;

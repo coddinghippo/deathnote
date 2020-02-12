@@ -14,7 +14,7 @@ ${reset};
   }
 
   body{
-    padding: 1rem;
+    padding: 2rem;
     font-family: 'Margarine', sans-serif;
   }
 

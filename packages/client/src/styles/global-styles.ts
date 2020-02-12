@@ -1,6 +1,6 @@
 import reset from "styled-reset";
 import { createGlobalStyle } from "styled-components";
-import { colors } from "./_mixin";
+import { colors, fonts } from "./_mixin";
 
 export const GlobalStyle = createGlobalStyle`
 ${reset};
@@ -22,7 +22,7 @@ ${reset};
 
   body{
     padding: 2rem;
-    font-family: 'Margarine', sans-serif;
+    font-family: ${fonts.generalFont}, sans-serif;
   }
 
   a{

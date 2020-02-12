@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 
 const Wrapper = styled.div`
@@ -18,18 +18,25 @@ const InputBox = styled.input`
 const SearchButton = styled.div`
   margin: 1rem;
   padding: 1rem;
-  border-radius: 1rem;
+  // border-radius: 1rem;
   font-size: 1rem;
-  width: 10rem;
   border: 1px solid white;
   text-align: center;
   cursor: pointer;
 `;
 
 const SearchView = () => {
+  const [summoner, setSummoner] = useState();
+  console.log(summoner);
+
+  const onChangeText = (text: string) => setSummoner(text);
+
   return (
     <Wrapper>
-      <InputBox placeholder="Summoner to die"></InputBox>
+      <InputBox
+        placeholder="Summoner to die"
+        onChange={e => onChangeText(e.target.value)}
+      ></InputBox>
       <SearchButton>SEARCH</SearchButton>
     </Wrapper>
   );

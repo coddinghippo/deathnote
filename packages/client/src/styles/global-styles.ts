@@ -8,6 +8,12 @@ ${reset};
   font-family:'Margarine';
   src: url(${require("../fonts/Margarine-Regular.ttf")});
 }
+
+@font-face {
+  font-family:'Tauri';
+  src: url(${require("../fonts/Tauri-Regular.ttf")});
+}
+
   * {
       box-sizing: border-box;
       background: ${colors.paperBlack};

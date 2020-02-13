@@ -2,6 +2,11 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { api } from "../api";
 import { ISummoner } from "../shared-interfaces";
+import { fonts } from "../styles/_mixin";
+
+interface ITextProps {
+  size: string;
+}
 
 const Wrapper = styled.div`
   display: flex;
@@ -33,6 +38,11 @@ const SearchButton = styled.div`
   cursor: pointer;
 `;
 
+const SummonerText = styled.p`
+  font-size: ${(props: ITextProps) => props.size};
+  font-family: ${fonts.generalFont};
+`;
+
 const SearchView = () => {
   const [summonerName, setSummonerName] = useState();
   const [summoner, setSummoner] = useState();
@@ -53,12 +63,12 @@ const SearchView = () => {
   const renderSummonerData = (data: ISummoner) => {
     return (
       <div key={data.id}>
-        <h1>{data.name}</h1>
-        <p>{data.id}</p>
-        <p>
+        <SummonerText size="2rem">{data.name}</SummonerText>
+        <SummonerText size="0.8rem">{data.id}</SummonerText>
+        <SummonerText size="0.8rem">
           <b>Level: </b>
           {data.summonerLevel}
-        </p>
+        </SummonerText>
       </div>
     );
   };

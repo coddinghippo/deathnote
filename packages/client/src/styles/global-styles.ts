@@ -1,5 +1,6 @@
 import reset from "styled-reset";
 import { createGlobalStyle } from "styled-components";
+import { colors, fonts } from "./_mixin";
 
 export const GlobalStyle = createGlobalStyle`
 ${reset};
@@ -7,15 +8,21 @@ ${reset};
   font-family:'Margarine';
   src: url(${require("../fonts/Margarine-Regular.ttf")});
 }
+
+@font-face {
+  font-family:'Tauri';
+  src: url(${require("../fonts/Tauri-Regular.ttf")});
+}
+
   * {
       box-sizing: border-box;
-      background: #000;
+      background: ${colors.paperBlack};
       color: white;
   }
 
   body{
-    padding: 1rem;
-    font-family: 'Margarine', sans-serif;
+    padding: 2rem;
+    font-family: ${fonts.generalFont}, sans-serif;
   }
 
   a{

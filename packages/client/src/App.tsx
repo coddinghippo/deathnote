@@ -3,15 +3,20 @@ import styled from "styled-components";
 import { api } from "./api";
 import { GlobalStyle } from "./styles/global-styles";
 import SearchView from "./components/SearchView";
+import { fonts } from "./styles/_mixin";
 
 const HeaderTitle = styled.div`
+  margin-top: 30vh;
   font-size: 4rem;
+  text-align: center;
+  font-family: ${fonts.themeFont}, sans-serif;
 `;
 
 const SearchContent = styled.div`
-  margin-top: 36vh;
+  margin-top: 2rem;
   display: flex;
   justify-content: center;
+  font-family: ${fonts.themeFont}, sans-serif;
 `;
 
 const App = () => {

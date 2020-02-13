@@ -1,4 +1,6 @@
 import express from "express";
+import axios from "axios";
+import dotenv from "dotenv";
 
 declare global {
   namespace NodeJS {
@@ -8,6 +10,19 @@ declare global {
     }
   }
 }
+
+// configurations
+dotenv.config();
+
+const BASE_URL = "https://kr.api.riotgames.com/lol/";
+const TOKEN = process.env["RIOT_API_KEY"];
+
+const baseAPI = axios.create({
+  baseURL: BASE_URL,
+  headers: {
+    "X-Riot-Token": TOKEN
+  }
+});
 
 class App {
   public application: express.Application;
@@ -20,9 +35,15 @@ const app = new App().application;
 const PORT = process.env.PORT || 4000;
 
 app.get("/", (req: express.Request, res: express.Response) => {
-  res.send("Successfully started");
+  let summonerName = "상산조자룡이다";
+  baseAPI
+    .get(`summoner/v4/summoners/by-name/${encodeURI(summonerName)}`)
+    .then(data => {
+      console.log(data);
+      res.send("Success");
+    });
 });
 
-app.listen(PORT, () =>
-  console.log(`Server is Running at >>> localhost:${PORT}`)
-);
+app.listen(PORT, () => {
+  console.log(`Server is Running at >>> localhost:${PORT}`);
+});

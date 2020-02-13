@@ -1,7 +1,7 @@
-import express from "express";
-import axios from "axios";
-import dotenv from "dotenv";
-import cors from "cors";
+import axios from 'axios';
+import cors from 'cors';
+import dotenv from 'dotenv';
+import express from 'express';
 
 declare global {
   namespace NodeJS {
@@ -42,6 +42,8 @@ app.use(
   })
 );
 
+app.get("/", (req: express.Request, res: express.Response) => res.send(`TOKEN: ${TOKEN}`))
+
 app.get(
   "/api/summoner-by-name",
   (req: express.Request, res: express.Response) => {
@@ -61,5 +63,5 @@ const getSummonerByName = async (
     .get(`summoner/v4/summoners/by-name/${encodeURI(summonerName)}`)
     .then(resDataFromRiotGames => {
       res.send(resDataFromRiotGames.data);
-    });
+    }).catch(console.log);
 };

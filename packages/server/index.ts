@@ -1,5 +1,4 @@
 import express from "express";
-import console = require("console");
 
 declare global {
   namespace NodeJS {

@@ -12,6 +12,8 @@ const baseAPI = axios.create({
 
 export const api = {
   getSummonerByName: async (summonerName: string) => {
-    baseAPI.get(`/api/summoner-by-name?name=${summonerName}`);
+    console.log(summonerName);
+    const res = await baseAPI.get(`/api/summoner-by-name?name=${summonerName}`);
+    return res.data;
   }
 };

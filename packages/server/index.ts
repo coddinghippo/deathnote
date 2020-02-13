@@ -1,6 +1,7 @@
 import express from "express";
 import axios from "axios";
 import dotenv from "dotenv";
+import cors from "cors";
 
 declare global {
   namespace NodeJS {
@@ -33,6 +34,13 @@ class App {
 
 const app = new App().application;
 const PORT = process.env.PORT || 4000;
+
+// Configure CORS
+app.use(
+  cors({
+    origin: "http://localhost:3000"
+  })
+);
 
 app.get(
   "/api/summoner-by-name",

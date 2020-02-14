@@ -22,16 +22,18 @@ import styled from 'styled-components';
 
 const MainBoxForm = styled.div`
   position : relative;
+  top : 30px;
 `;
 
 const MainBox = styled.div`
   text-align: center;
   width: 624px;
   margin: 0 auto;
+  padding: 100px 0px;
 `;
 
 
-const MainBoxButton = styled.button`
+const MainBoxButton = styled.button`  
   display: inline;
   border : none;
   background-color: black;
@@ -43,7 +45,7 @@ const MainBoxButton = styled.button`
   top: 0;
   right : 0;
   margin: 10px 10px 0 0;
-  height : 30px;
+  height : 35px;
   cursor : pointer;
 
 `;
@@ -56,7 +58,7 @@ padding: 15px 150px 18px 17px;
 background: white;
 border: none;
 line-height: 17px;
-font-size: 14px;
+font-size: 17px;
 color: #9b9b9b;
 box-sizing: border-box;
 outline: none;

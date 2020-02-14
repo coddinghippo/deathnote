@@ -42,8 +42,6 @@ app.use(
   })
 );
 
-app.get("/", (req: express.Request, res: express.Response) => res.send(`TOKEN: ${TOKEN}`))
-
 app.get(
   "/api/summoner-by-name",
   (req: express.Request, res: express.Response) => {

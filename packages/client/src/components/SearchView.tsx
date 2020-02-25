@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
-import styled from "styled-components";
-import { api } from "../api";
-import { ISummoner } from "../shared-interfaces";
-import { fonts } from "../styles/_mixin";
+import { api } from '../api';
+import { ISummoner } from '../shared-interfaces';
+import { fonts } from '../styles/_mixin';
+import React, { useEffect, useState } from 'react';
+import styled from 'styled-components';
 
 interface ITextProps {
   size: string;

@@ -2,28 +2,18 @@ import { api } from './api';
 import SearchView from './components/SearchView';
 import { fonts } from './styles/_mixin';
 import { GlobalStyle } from './styles/global-styles';
-import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
+// import { ILeague, ISummoner } from './shared-interfaces';
+import React, { useEffect, useState ,KeyboardEvent} from 'react';
 
-// const HeaderTitle = styled.div`
-//   margin-top: 30vh;
-//   font-size: 4rem;
-//   text-align: center;
-//   font-family: ${fonts.themeFont}, sans-serif;
-// `;
-
-// const SearchContent = styled.div`
-//   margin-top: 2rem;
-//   display: flex;
-//   justify-content: center;
-//   font-family: ${fonts.themeFont}, sans-serif;
-// `;
-
+// export interface EventHandlerProps{
+//   onKeyDown: (e:KeyboardEvent<HTMLInputElement>) => void
+// }
 
 const MainBoxForm = styled.div`
   position : relative;
 `;
-
+      
 const MainBox = styled.div`
   text-align: center;
   width: 624px;
@@ -49,6 +39,23 @@ const MainBoxButton = styled.button`
 `;
 
 
+const TestBoxButton = styled.button`
+  display: inline;
+  border : none;
+  background-color: white;
+  font-weight: 600;
+  font-size: 16px;
+  color: black;
+  outline : none;
+  position : relative;
+  top: 0;
+  right : 0;
+  margin: 10px 10px 0 0;
+  height : 30px;
+  cursor : pointer;
+
+`;
+
 const MainSearchForm = styled.input`
 display: block;
 width: 100%;
@@ -67,18 +74,51 @@ const Logo = styled.img`
   height : 300px;
 `;
 
+const ResultFoam = styled.p`
+  width: 100%;
+  font-size:14px;
+`;
+
+
 const App = () => {
 
-  const [summoners, setSummoners] = useState()
+  const [summoners, setSummoners] = useState();
+  const [summonersData,setSummonersData] = useState();
+  const [summonersLeague,setSummonersLeague] = useState();
 
   const handleInput = (text: string) => {
     setSummoners(text)
-  }
+  };
+  const enterEvent = async () => {
+    try{
+      const temp = await getSummonerByName(summoners);
+    getLeagueByEncryptedId(temp);
+    }
+    catch(err){
+      console.error(err);
+    }
+  };
+  //Check 'enter' 
+  const handleKeyPress = (e : KeyboardEvent<HTMLInputElement>) =>{
+    if (e.keyCode === 13){
+      enterEvent();
+      // getSummonerByName(summonerName);
+    }
+  };
 
   const getSummonerByName = async (summonerName: string) => {
-    const res = await api.getSummonerByName(summonerName);
-    console.log(res);
+    const data = await api.getSummonerByName(summonerName);
+    setSummonersData(data); //to summonersData 
+    console.log(data);
+    return data.id;
   };
+  
+  const getLeagueByEncryptedId = async(encryptedId: string) =>{
+    const data = await api.getLeagueByEncryptedId(encryptedId);
+    console.log(data);
+    setSummonersLeague(data);
+    
+  }
 
   return (
     <>
@@ -87,17 +127,32 @@ const App = () => {
 
         <Logo src="/deathnote.png" alt="deathnote_logo"></Logo>
         <MainBoxForm>
-          <MainSearchForm placeholder="소환사명, 소환사명, ..." onChange={e => handleInput(e.target.value)}>
+          <MainSearchForm placeholder="소환사명, 소환사명, ..." onChange={e => handleInput(e.target.value)}
+          onKeyDown={(e : any) => {
+            handleKeyPress(e);
+          }}
+          >
           </MainSearchForm>
-          <MainBoxButton onClick={() => getSummonerByName(summoners)}>
+          <MainBoxButton 
+          onClick={()=>{
+            enterEvent();
+          }
+          }
+          >
             검색
           </MainBoxButton>
-
         </MainBoxForm>
-
-
       </MainBox>
-
+      {/* {summonersData ?  
+      (
+      <ResultFoam>{summonersData.id}</ResultFoam>
+      )
+       : null} */}
+       {summonersLeague ?
+       (
+       <Logo src={require(`../public/ranked-emblems/Emblem_${summonersLeague[0].tier}.png`)} alt="summonersTierImg"/>
+       )
+       : null}
     </>
   );
 };

@@ -51,6 +51,13 @@ app.get(
   }
 );
 
+app.get(  //rank 정보를 얻기위함.
+  "/api/league-by-encrypted-id",
+  (req:express.Request , res:express.Response) => {
+   getLeagueByEncryptedId(res,req.query.id); 
+  }
+); 
+
 app.listen(PORT, () => {
   console.log(`Server is Running at >>> localhost:${PORT}`);
 });
@@ -61,6 +68,17 @@ const getSummonerByName = async (
 ) => {
   baseAPI
     .get(`summoner/v4/summoners/by-name/${encodeURI(summonerName)}`)
+    .then(resDataFromRiotGames => {
+      res.send(resDataFromRiotGames.data);
+    }).catch(console.log);
+};
+
+const getLeagueByEncryptedId = async(
+  res:express.Response,
+  encryptedId: string
+) => {
+  baseAPI
+    .get(`league/v4/entries/by-summoner/${encryptedId}`)
     .then(resDataFromRiotGames => {
       res.send(resDataFromRiotGames.data);
     }).catch(console.log);
